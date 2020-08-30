@@ -8,7 +8,7 @@
   top: 0;
 }
 
-.navbar-container {
+.navbar__container {
   display: flex;
   justify-content: space-between;
   height: 80px;
@@ -24,7 +24,7 @@
   padding-left: 110px;
 }
 
-.navbar-logo {
+.navbar__logo {
   display: flex;
   justify-self: start;
   align-items: center;
@@ -37,8 +37,11 @@
   text-align: 700;
   font-weight: bold;
 }
+.navbar__icon {
+  display: none;
+}
 
-.nav-menu {
+.navbar__menu {
   display: flex;
   align-items: center;
   list-style: none;
@@ -48,11 +51,11 @@
   font-size: 13px;
 }
 
-.nav-item {
+.navbar__item {
   height: 80px;
 }
 
-.nav-links {
+.navbar__links {
   display: flex;
   color: #929292;
   text-decoration: none;
@@ -61,25 +64,84 @@
   text-align: 300;
 }
 
-.nav-links:hover {
+.navbar__links:hover {
   color: #141414;
   text-align: 700;
   font-weight: bold;
   transition: all 0.5s ease;
 }
 
-.active {
+.navbar__links--active {
   color: #141414;
   text-align: 700;
   font-weight: bold;
 }
 
-.navbar-left {
+.navbar__left {
   display: flex;
   justify-self: start;
   align-items: center;
 }
 
-.navbar-icon:nth-child(2) {
+.navbar__icons:nth-child(2) {
   margin: 0 1.3em;
+}
+
+@media screen and (max-width: 960px) {
+  .navbar__menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 90vh;
+    position: absolute;
+    top: 80px;
+    left: -100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+
+  .navbar__menu.active {
+    background: transparent;
+    left: 0;
+    opacity: 1;
+    transition: all 0.6s ease;
+    z-index: 1;
+  }
+
+  .navbar__left {
+    display: flex;
+    width: 100%;
+    height: 10vh;
+    position: absolute;
+    top: 560px;
+
+    left: -100%;
+    opacity: 1;
+    transition: all 0.6s ease;
+  }
+
+  .navbar__left.active {
+    background: transparent;
+    left: 38%;
+    opacity: 1;
+    transition: all 0.7s ease;
+    z-index: 1;
+  }
+
+  .navbar__icon {
+    display: block;
+    position: absolute;
+    top: 8px;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .navbar__logo {
+    position: absolute;
+    top: 22px;
+    left: 20px;
+    font-size: 20px;
+  }
 }

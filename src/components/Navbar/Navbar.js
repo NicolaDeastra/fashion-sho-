@@ -1,81 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 
+import { FaBars, FaTimes } from "react-icons/fa";
 import { BiSearch, BiUser, BiShoppingBag } from "react-icons/bi";
 import { IconContext } from "react-icons/lib";
 
 import "./Navbar.css";
 
 function Navbar() {
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => setClick(!click);
+  const closeMobileMenu = () => setClick(false);
+
   return (
     <>
       <IconContext.Provider value={{ size: "1.4em", color: "#929292" }}>
         <div className="navbar">
-          <div className="navbar-container container">
-            <Link className="navbar-logo">NewHood</Link>
+          <div className="navbar__container container">
+            <Link className="navbar__logo">NewHood</Link>
             <div className="navbar-center">
-              <ul className="nav-menu">
-                <li className="nav-item">
+              <div className="navbar__icon" onClick={handleClick}>
+                {click ? <FaTimes /> : <FaBars />}
+              </div>
+              <ul className={click ? "navbar__menu active" : "navbar__menu"}>
+                <li className="navbar__item">
                   <NavLink
                     to="/"
                     exact
-                    className="nav-links"
-                    activeClassName="active"
+                    className="navbar__links"
+                    activeClassName="navbar__links--active"
+                    onClick={closeMobileMenu}
                   >
                     Home
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="navbar__item">
                   <NavLink
                     to="/men"
-                    className="nav-links"
-                    activeClassName="active"
+                    className="navbar__links"
+                    activeClassName="navbar__links--active "
+                    onClick={closeMobileMenu}
                   >
                     Men
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="navbar__item">
                   <NavLink
                     to="/women"
-                    className="nav-links"
-                    activeClassName="active"
+                    className="navbar__links"
+                    activeClassName="navbar__links--active"
+                    onClick={closeMobileMenu}
                   >
                     Women
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="navbar__item">
                   <NavLink
                     to="/pages"
-                    className="nav-links"
-                    activeClassName="active"
+                    className="navbar__links"
+                    activeClassName="navbar__links--active"
+                    onClick={closeMobileMenu}
                   >
                     Pages
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="navbar__item">
                   <NavLink
                     to="/blog"
-                    className="nav-links"
-                    activeClassName="active"
+                    className="navbar__links"
+                    activeClassName="navbar__links--active"
+                    onClick={closeMobileMenu}
                   >
                     Blog
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="navbar__item">
                   <NavLink
                     to="/contact"
-                    className="nav-links"
-                    activeClassName="active"
+                    className="navbar__links"
+                    activeClassName="navbar__links--active"
+                    onClick={closeMobileMenu}
                   >
                     Contact
                   </NavLink>
                 </li>
               </ul>
             </div>
-            <div className="navbar-left">
-              <BiSearch className="navbar-icon" />
-              <BiUser className="navbar-icon" />
-              <BiShoppingBag className="navbar-icon" />
+            <div className={click ? "navbar__left active" : "navbar__left"}>
+              <BiSearch className="navbar__icons" />
+              <BiUser className="navbar__icons" />
+              <BiShoppingBag className="navbar__icons" />
             </div>
           </div>
         </div>
